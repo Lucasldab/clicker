@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <script src="script.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blood Game</title>
 </head>
+
 <body>
-    <a href="#" onclick="add()"><img src="BloodDrop.png"></a>
+    <a href="#" onclick="add()"><img src="BloodDrop.png" id="bloodimage" class="center"></a>
     <br><br>
-    You posses:
-    <input type="text" id="text" disabled style= text-align:center></input>
+    <div class="center">
+        You posses:
+        <input type="text" id="text" disabled></input>
+        blood drops
+    </div>
+    <br><br>
+    <div class="center">
+        <button><a href="#" onclick="save()">Save</a></button>
+        <button><a href="#" onclick="load()">Load</a></button>
+    </div>
 </body>
+
 </html>
