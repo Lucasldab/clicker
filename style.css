@@ -9,3 +9,23 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.upgradeImgs {
+    width: 20px;
+    height: 20px;
+}
+
+table.updrades,
+th.updrades,
+td.updrades,
+caption.updrades {
+    border: 3px solid gold;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th.updrades,
+td.updrades {
+    padding: 15px;
+}
