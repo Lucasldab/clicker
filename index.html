@@ -1,11 +1,22 @@
 <!DOCTYPE html>
+<script> var bloodcount = 0</script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Blood Game</title>
 </head>
 <body>
-    
+    <a href="#" onclick="add()"><img src="BloodDrop.png"></a>
+    <br><br>
+    You posses:
+    <input type="text" id="text" disabled style= text-align:center></input>
+    <script>
+        function add(){
+            bloodcount++;
+            document.getElementById('text').value = bloodcount;
+            document.title = bloodcount + " Blood";
+        }
+    </script>
 </body>
 </html>
