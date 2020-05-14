@@ -1,6 +1,7 @@
 var bloodCount = 0;
 var autoblood = 0;
 var bloodyflesh = 0;
+var multiplier = 1;
 
 setInterval(timer, 1000);
 
@@ -16,6 +17,8 @@ function update() {
 
     document.getElementById("ammountBloodyFlesh").innerHTML = bloodyflesh
     document.getElementById("costBloodyFlesh").innerHTML = (bloodyflesh + 1) * 15;
+
+    document.getElementById("bloodPerSecond").innerHTML = ((autoblood + (bloodyflesh*2))*multiplier) + " blood/s"
 }
 
 function timer() {
