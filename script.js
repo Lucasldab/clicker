@@ -12,18 +12,23 @@ function update() {
     } else {
         document.title = bloodCount + " Blood";
     }
-    document.getElementById("ammountMovingBlood").innerHTML = autoblood
+    document.getElementById("ammountMultiplier").innerHTML = "Multiplier x" + (multiplier+1);
+    document.getElementById("ammountMultiplier2").innerHTML = "x" + (multiplier+1);
+    document.getElementById("costMultiplier").innerHTML = ((multiplier+1)*100) + " Bloods";
+    document.getElementById("currentMultiplier").innerHTML = "Your current multiplier is x" + (multiplier);
+
+    document.getElementById("ammountMovingBlood").innerHTML = autoblood;
     document.getElementById("costMovingBlood").innerHTML = (autoblood + 1) * 12;
 
-    document.getElementById("ammountBloodyFlesh").innerHTML = bloodyflesh
+    document.getElementById("ammountBloodyFlesh").innerHTML = bloodyflesh;
     document.getElementById("costBloodyFlesh").innerHTML = (bloodyflesh + 1) * 15;
 
-    document.getElementById("bloodPerSecond").innerHTML = ((autoblood + (bloodyflesh*2))*multiplier) + " blood/s"
+    document.getElementById("bloodPerSecond").innerHTML = ((autoblood + (bloodyflesh*2))*multiplier) + " blood/s";
 }
 
 function timer() {
-    bloodCount = bloodCount + autoblood;
-    bloodCount = bloodCount + (bloodyflesh*2);
+    bloodCount = bloodCount + autoblood*multiplier;
+    bloodCount = bloodCount + (bloodyflesh*2)*multiplier;
     update();
 }
 
@@ -36,6 +41,7 @@ function save() {
     localStorage.setItem("bloodCount", bloodCount);
     localStorage.setItem("autoblood", autoblood);
     localStorage.setItem("bloodyflesh", bloodyflesh);
+    localStorage.setItem("multiplier", multiplier);
 }
 
 function load() {
@@ -45,6 +51,8 @@ function load() {
     autoblood = parseInt(autoblood);
     bloodyflesh = localStorage.getItem("bloodyflesh");
     bloodyflesh = parseInt(bloodyflesh);
+    multiplier = localStorage.getItem("multiplier");
+    multiplier = parseInt(multiplier);
     update();
 }
 
@@ -60,6 +68,14 @@ function buyBloodyFlesh() {
     if (bloodCount >= ((bloodyflesh + 1) * 15)) {
         bloodCount = bloodCount - ((bloodyflesh + 1) * 15);
         bloodyflesh++;
+        update();
+    }
+}
+
+function buyMultiplier() {
+    if (bloodCount >= ((multiplier+1)*100)){
+        bloodCount = bloodCount - ((multiplier+1)*100);
+        multiplier++;
         update();
     }
 }
