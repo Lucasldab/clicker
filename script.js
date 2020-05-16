@@ -2,13 +2,22 @@ var bloodCount = 0;
 var autoblood = 0;
 var bloodyflesh = 0;
 var multiplier = 1;
+var redcells = 0;
 
 setInterval(timer, 1000);
 
 function update() {
-    document.getElementById('text').value = bloodCount;
+    if (redcells>=1){
+        document.getElementById('text').value = bloodCount.toFixed(1);
+    }else{
+        document.getElementById('text').value = bloodCount
+    }
     if (bloodCount > 1) {
-        document.title = bloodCount + " Bloods";
+        if (redcells >= 1){
+            document.title = bloodCount.toFixed(1) + " Bloods";
+        }else{
+            document.title = bloodCount + " Bloods";
+        }
     } else {
         document.title = bloodCount + " Blood";
     }
@@ -16,6 +25,9 @@ function update() {
     document.getElementById("ammountMultiplier2").innerHTML = "x" + (multiplier+1);
     document.getElementById("costMultiplier").innerHTML = ((multiplier+1)*100) + " Bloods";
     document.getElementById("currentMultiplier").innerHTML = "Your current multiplier is x" + (multiplier);
+
+    document.getElementById("ammountRedCells").innerHTML = redcells;
+    document.getElementById("costRedCells").innerHTML = (redcells + 1) * 10;
 
     document.getElementById("ammountMovingBlood").innerHTML = autoblood;
     document.getElementById("costMovingBlood").innerHTML = (autoblood + 1) * 12;
@@ -33,7 +45,7 @@ function timer() {
 }
 
 function add() {
-    bloodCount++;
+    bloodCount = bloodCount + 1 + (redcells/10);
     update();
 }
 
@@ -42,18 +54,29 @@ function save() {
     localStorage.setItem("autoblood", autoblood);
     localStorage.setItem("bloodyflesh", bloodyflesh);
     localStorage.setItem("multiplier", multiplier);
+    localStorage.setItem("redcells", redcells);
 }
 
 function load() {
     bloodCount = localStorage.getItem("bloodCount");
-    bloodCount = parseInt(bloodCount);
+    bloodCount = parseFloat(bloodCount);
     autoblood = localStorage.getItem("autoblood");
     autoblood = parseInt(autoblood);
     bloodyflesh = localStorage.getItem("bloodyflesh");
     bloodyflesh = parseInt(bloodyflesh);
     multiplier = localStorage.getItem("multiplier");
     multiplier = parseInt(multiplier);
+    redcells = localStorage.getItem("redcells");
+    redcells = parseInt(redcells);
     update();
+}
+
+function redCells() {
+    if (bloodCount >= ((redcells + 1) * 10)) {
+        bloodCount = bloodCount - ((redcells + 1) * 10);
+        redcells++;
+        update();
+    }
 }
 
 function buyMovingBlood() {
